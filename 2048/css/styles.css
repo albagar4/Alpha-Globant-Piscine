@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+		body, html, .game-container {
+			font-family: "Bebas Neue", sans-serif;
+			letter-spacing: 0.05em;
+			margin-top: 25px;
+			background-color: navajowhite;
+			font-size: 30px;
+		}
+		.score-container {
+			font-size: 20px;
+			background-color: antiquewhite;
+			border-radius: 20px;
+			width: 400px;
+            height: 50px;
+			font-weight: bold;
+			padding-top: 7px;
+		}
+        .cell {
+            width: 95px;
+            height: 95px;
+            background-color: #9C7560;
+            border: 3px solid #382318;
+            display: flex;
+			border-radius: 20px;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+        }
+		.grid-container {
+			width: 400px;
+            height: 400px;
+			display: flex;
+			background-color: #382318;
+			border-radius: 20px;
+			align-items: center;
+			justify-content: center;
+			margin-top: 20px;
+		}
+		#restart-btn {
+			border-radius: 10px;
+			margin-left: 225px;
+		}
