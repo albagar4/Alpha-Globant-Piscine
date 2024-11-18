@@ -26,6 +26,44 @@
             align-items: center;
             font-size: 24px;
         }
+		.cell-2 {
+			background-color: #E09558;
+		}
+		.cell-4 {
+			background-color: #C78F61;
+		}
+		.cell-8 {
+			background-color: #F99749;
+		}	
+		.cell-16 {
+			color: white;
+			background-color: #33281F;
+		}
+		.cell-32 {
+			color: white;
+			background-color: #332B24;
+		}
+		.cell-64 {
+			color: white;
+			background-color: #47403A;
+		}
+		.cell-128 {
+			color: white;
+			background-color: #615B56;
+		}
+		.cell-256 {
+			background-color: #AD8666;
+		}
+		.cell-512 {
+			background-color: #947B66;
+		}
+		.cell-1024 {
+			background-color: #7A6C61;
+		}
+		.cell-2048 {
+			color: white;
+			background-color: #89170A;
+		}
 		.grid-container {
 			width: 400px;
             height: 400px;
