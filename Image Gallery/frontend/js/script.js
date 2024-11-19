@@ -22,6 +22,7 @@ function handleSubmit(e) {
 
     const query = searchInput.value;
     displayResults(query, resultsDiv);
+    searchInput.value = '';
 }
 
 searchForm.addEventListener('submit', handleSubmit);

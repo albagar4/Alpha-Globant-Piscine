@@ -15,17 +15,22 @@ app.get('/', (req, res) => {
 
 app.get('/get_unsplash_urls', async (req, res) => {
 	const search = req.query['search'];
-	const api_key = process.env.UNSPLASH_API;
-	const response = await fetch(`https://api.unsplash.com/search/photos?query=${search}&client_id=${api_key}`);
-	const data = await response.json();
-
-	let toSend = [];
-
-	data.results.forEach((result) => {
-		toSend.push(result.urls.small);
-	});
-
-	return res.send(toSend);
+	if (!search) {
+		return res.status(400).send('No search query provided');
+	}
+	else {
+		const api_key = process.env.UNSPLASH_API;
+		const response = await fetch(`https://api.unsplash.com/search/photos?query=${search}&client_id=${api_key}`);
+		const data = await response.json();
+	
+		let toSend = [];
+	
+		data.results.forEach((result) => {
+			toSend.push(result.urls.small);
+		});
+	
+		return res.send(toSend);
+	}
 });
 
 app.listen(port, () => {

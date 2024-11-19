@@ -1,5 +1,5 @@
 body, html {
-	background: linear-gradient(to bottom, #8C6CE0, #5a61e6);
+	background-color: #5a61e6;
 	height: 100%;
 }
 
@@ -19,12 +19,21 @@ body, html {
 h1 {
 	font-family: "Bebas Neue", sans-serif;
 	font-size: 40px;
+	color: black;
+}
+
+h3 {
+	font-family: "Bebas Neue", sans-serif;
+	color: rgb(52, 52, 52);
+}
+
+.header-container {
 	background: linear-gradient(to right, #B7B9E0, #c582f1);
-	padding: 50px;
 	border-radius: 10px;
 	box-shadow: 0 0 10px 0 rgba(195, 151, 90, 0.5);
-	color: black;
-	margin-bottom: 7px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	padding: 50px;
 }
 
 #search-input {
@@ -32,13 +41,25 @@ h1 {
 	border: none;
 }
 
-#btn-submit {
+#btn-submit, button{
 	border-radius: 2px;
 	border: none;
 	background-color: white;
 	cursor: pointer;
 }
 
-#results {
+img.result {
+	width: 200px;
+	height: 200px;
+	object-fit: cover;
+	overflow: hidden;
+	border-radius: 5px;
+	margin: 10px;
+}
+
+.login-page {
+	background: linear-gradient(to left, #B7B9E0, #c582f1);
 	border-radius: 10px;
+	padding: 5px;	
+	box-shadow: 0 0 10px 0 rgba(195, 151, 90, 0.5);
 }
