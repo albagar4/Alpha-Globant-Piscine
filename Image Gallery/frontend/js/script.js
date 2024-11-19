@@ -12,7 +12,8 @@ async function displayResults(query, resultsDiv) {
     });
 }
 
-const searchInput = document.getElementById('search');
+const searchForm = document.getElementById('search');
+const searchInput = searchForm['search_input'];
 
 function handleSubmit(e) {
     e.preventDefault();
