@@ -25,4 +25,28 @@ function handleSubmit(e) {
     searchInput.value = '';
 }
 
+// Code for OAuth2.0
+const loginButton = document.querySelector('.login-page button');
+
+loginButton.addEventListener('click', () => {
+    // This will redirect the user to the login endpoint in the backend
+    // http://localhost:3000/auth/login (this will redirect to Unsplash)
+    window.location.href = `${SERVER_URL}/auth/login`;
+});
+
+async function checkAuthStatus() {
+    const response = await  fetch(`${SERVER_URL}/auth/status`);
+    const data = await response.json();
+
+    if (data.authenticated) {
+        loginButton.textContent = 'Logout';
+        loginButton.disabled = true;
+    }
+    else {
+        loginButton.textContent = 'Login';
+        loginButton.disabled = false;
+    }
+}
+
+checkAuthStatus();
 searchForm.addEventListener('submit', handleSubmit);
