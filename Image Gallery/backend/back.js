@@ -89,6 +89,12 @@ app.get('/auth/token/callback', async (req, res) => {
 	}
 });
 
+// The endpoint to logout the user
+app.get('/auth/logout', (req, res) => {
+	userAccessToken = null;
+	res.json({ message: 'Logged out succesfully' });
+});
+
 // The endpoint to check if the user is authenticated
 app.get('/auth/status', (req, res) => {
 	if (userAccessToken)
@@ -96,6 +102,7 @@ app.get('/auth/status', (req, res) => {
 	else
 		res.json({ authenticated: false});
 });
+
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

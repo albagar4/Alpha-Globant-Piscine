@@ -26,7 +26,8 @@ function handleSubmit(e) {
 }
 
 // Code for OAuth2.0
-const loginButton = document.querySelector('.login-page button');
+const loginButton = document.querySelector('#login-button');
+const logoutButton = document.querySelector('#logout-button');
 
 loginButton.addEventListener('click', () => {
     // This will redirect the user to the login endpoint in the backend
@@ -34,19 +35,34 @@ loginButton.addEventListener('click', () => {
     window.location.href = `${SERVER_URL}/auth/login`;
 });
 
+logoutButton.addEventListener('click', async () => {
+    try {
+        const response = await fetch(`${SERVER_URL}/auth/logout`);
+        const data = await response.json();
+        if (data.message === 'Logged out succesfully') {
+            loginButton.style.display = 'inline-block';
+            logoutButton.style.display = 'none';
+            alert('Logged out successfully');
+        }
+    }
+    catch (error) {
+        console.error('Error logging out', error);
+        alert('Failed to log out. Please try again.');
+    }
+});
+
 async function checkAuthStatus() {
     const response = await  fetch(`${SERVER_URL}/auth/status`);
     const data = await response.json();
 
     if (data.authenticated) {
-        loginButton.textContent = 'Logout';
-        loginButton.disabled = true;
-    }
-    else {
-        loginButton.textContent = 'Login';
-        loginButton.disabled = false;
+        loginButton.style.display = 'none';
+        logoutButton.style.display = 'inline-block';
+    } else {
+        loginButton.style.display = 'inline-block';
+        logoutButton.style.display = 'none';
     }
 }
 
-checkAuthStatus();
+window.addEventListener('load', checkAuthStatus());
 searchForm.addEventListener('submit', handleSubmit);
