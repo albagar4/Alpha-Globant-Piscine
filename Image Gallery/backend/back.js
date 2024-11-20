@@ -81,7 +81,7 @@ app.get('/auth/token/callback', async (req, res) => {
 		// I store the access token in a variable
 		userAccessToken = data.access_token;
 
-		res.redirect('http://localhost:5500/Image%20Gallery/frontend/index.html');
+		res.redirect('http://localhost:8080');
 	}
 	catch (error) {
 		console.error('Unexpected error:', error);

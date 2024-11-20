@@ -3,11 +3,19 @@ services:
   image-gallery:
     build: 
       context: .
-      dockerfile: Dockerfile
+      dockerfile: backend/Dockerfile
     env_file: .env
     environment:
       UNSPLASH_API: ${UNSPLASH_API}
     container_name: image-gallery
     ports:
       - "3000:3000"
+    restart: always
+  nginx:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: nginx
+    ports:
+      - "8080:80"
     restart: always

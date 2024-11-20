@@ -1,5 +1,5 @@
 FROM node:18
-COPY . /app
-WORKDIR /app/backend
+COPY backend/ /app
+WORKDIR /app
 RUN npm install
 CMD ["node", "back.js"]
