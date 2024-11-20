@@ -132,5 +132,5 @@ async function checkAuthStatus() {
     }
 }
 
-window.addEventListener('load', checkAuthStatus());
+window.addEventListener('load', checkAuthStatus);
 searchForm.addEventListener('submit', handleSubmit);
