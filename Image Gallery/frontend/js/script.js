@@ -1,14 +1,71 @@
 const SERVER_URL = 'http://localhost:3000';
 
+//Favorite implementation
+function getFavorites() {
+    // If there are no favorites, return an empty array
+    return JSON.parse(localStorage.getItem('favorites')) || [];
+}
+
+// Save the favorites to local storage
+function saveFavorites(favorites) {
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+}
+
+// Function to add or erase an image from favorites
+async function toggleFavorite(imgUrl) {
+    const response = await fetch(`${SERVER_URL}/auth/status`);
+    const data = await response.json();
+
+    if (data.authenticated) {
+        const favorites = getFavorites();
+        const index = favorites.indexOf(imgUrl);
+
+        // indexOf returns -1 if the element is not found, else it returns the index
+        if (index === -1)
+            favorites.push(imgUrl);
+        else 
+            favorites.splice(index, 1);
+
+        saveFavorites(favorites);
+    }
+}
+
+function displayFavorites(resultsDiv) {
+    const favorites = getFavorites();
+    resultsDiv.innerHTML = '';
+
+    favorites.forEach(url => {
+        const img = document.createElement('img');
+        const photo = document.createElement('div');
+        photo.classList.add('result');
+        img.src = url;
+
+        photo.appendChild(img);
+        resultsDiv.appendChild(photo);
+    });
+}
+
+const favoritesButton = document.getElementById('favorites-button');
+
+favoritesButton.addEventListener('click', () => {
+    const resultsDiv = document.getElementById('results');
+    resultsDiv.innerHTML = '';
+    displayFavorites(resultsDiv);
+});
+
 async function displayResults(query, resultsDiv) {
     const response = await fetch(`${SERVER_URL}/get_unsplash_urls?search=${query}`);
     const data = await response.json();
 
     data.forEach(result => {
         const img = document.createElement('img');
+        const photo = document.createElement('div');
+        photo.classList.add('result');
         img.src = result;
-        img.classList.add('result');
-        resultsDiv.appendChild(img);
+        // if you click on the image, it will be added to favorites
+        img.addEventListener('click', () => toggleFavorite(result));
+        photo.appendChild(img);
+        resultsDiv.appendChild(photo);
     });
 }
 
@@ -42,6 +99,12 @@ logoutButton.addEventListener('click', async () => {
         if (data.message === 'Logged out succesfully') {
             loginButton.style.display = 'inline-block';
             logoutButton.style.display = 'none';
+
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';
+
+            document.body.classList.remove('authenticated');
+
             alert('Logged out successfully');
         }
     }
@@ -52,15 +115,20 @@ logoutButton.addEventListener('click', async () => {
 });
 
 async function checkAuthStatus() {
-    const response = await  fetch(`${SERVER_URL}/auth/status`);
+    const response = await fetch(`${SERVER_URL}/auth/status`);
     const data = await response.json();
 
+    const body = document.body;
     if (data.authenticated) {
         loginButton.style.display = 'none';
         logoutButton.style.display = 'inline-block';
+        favoritesButton.style.display = 'inline-block';
+        body.classList.add('authenticated');
     } else {
         loginButton.style.display = 'inline-block';
         logoutButton.style.display = 'none';
+        favoritesButton.style.display = 'none';
+        body.classList.remove('authenticated');
     }
 }
 
