@@ -121,9 +121,27 @@
 	padding: 2%;
 	border: 1px solid #ccc;
 	border-radius: 5px;
+	background: transparent;
+	color: white;
 }
 
 #submit-btn:hover {
 	background-color: white;
 	color: #05203c;
 }
+
+#IA-response {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #ffffff;
+    color: #05203c;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
