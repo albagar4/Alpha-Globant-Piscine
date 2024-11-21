@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Gallery</title>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="css/styles.css">    
 </head>
 <body>
@@ -16,11 +17,14 @@
 		<div id="map-option">Draw on our map</div>
 	</div>
 	<div class="form-page" align="center" style="display: none;">
-		<h1>Tell me where you want to go</h1>
-		<form id="travel-input">
-			<input type="text" name="origin" id="origin" placeholder="Origin">
-			<div id="submit-btn" type="submit">Submit</div>
-		</form>
+		<div id="back-btn"><span class="material-icons">home</span></div>
+		<div id="input-box">
+			<h1>Tell me where you want to go</h1>
+			<form id="travel-input">
+				<input type="text" name="origin" id="origin" placeholder="Travel destination">
+				<div id="submit-btn" type="submit"><span class="material-icons">search</span></div>
+			</form>
+		</div>
 	</div>
 	<script src="js/script.js"></script>
 </body>

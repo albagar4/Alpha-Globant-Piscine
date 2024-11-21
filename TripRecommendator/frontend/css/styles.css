@@ -1,7 +1,3 @@
-/* body, html {
-	background-color: #05203c;
-} */
-
 .init-page {
 	display: flex;
 	flex-direction: column;
@@ -60,4 +56,74 @@
 #map-option:hover {
 	background-color: white;
 	color: #0062e3;
+}
+
+#input-box {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: #05203c;
+	color: white;
+	padding: 10%;
+	border-radius: 5px;
+	font-family: 'Roboto', sans-serif;
+	font-size: 1.1rem;
+	width: 75%;
+
+	position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#back-btn {
+	display: flex;
+	justify-content: center;
+    align-items: center;
+	position: absolute;
+	top: 2%;
+	right: 2%;
+	width:fit-content;
+	cursor: pointer;
+	background-color: #05203c;
+	color: white;
+	font-family: 'Roboto', sans-serif;
+	padding: 2%;
+	border-radius: 5px;
+}
+
+#back-btn:hover {
+	background-color: white;
+	color: #05203c;
+}
+
+#travel-input {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	width: 100%;
+}
+
+#travel-input input {
+	flex: 1;
+	padding: 2%;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+#submit-btn {
+	display: flex;
+	justify-content: center;
+    align-items: center;
+	cursor: pointer;
+	padding: 2%;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+#submit-btn:hover {
+	background-color: white;
+	color: #05203c;
 }
