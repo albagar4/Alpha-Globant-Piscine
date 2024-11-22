@@ -25,6 +25,14 @@ app.get('/generate_travel_info', async (req, res) => {
 	res.json(result.response.text());
 });
 
+app.get('/generate_travel_coord', async (req, res) => {
+	const query = req.query.query;
+	const prompt = `Give me the coordinates, in a format xx.xx, xx.xx, of the ubication in this message: ${query}`;
+	
+	const result = await model.generateContent(prompt);
+	res.json(result.response.text());
+});
+
 app.listen(port, () => {
 	console.log(`Server is running on port ${port}`);
   });

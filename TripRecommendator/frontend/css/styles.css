@@ -58,40 +58,21 @@
 	color: #0062e3;
 }
 
-#input-box {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	background-color: #05203c;
-	color: white;
-	padding: 10%;
-	border-radius: 5px;
-	font-family: 'Roboto', sans-serif;
-	font-size: 1.1rem;
-	width: 75%;
-
-	position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
 #back-btn {
-	display: flex;
-	justify-content: center;
+    display: flex;
+    justify-content: center;
     align-items: center;
-	position: absolute;
-	top: 2%;
-	right: 2%;
-	width:fit-content;
-	cursor: pointer;
-	background-color: #05203c;
-	color: white;
-	font-family: 'Roboto', sans-serif;
-	padding: 2%;
+    margin-left: auto;
+    background-color: #05203c;
+    color: white;
+    padding: 5px;
+    width: fit-content;
+    cursor: pointer;
+	border: 1px solid #ccc;
 	border-radius: 5px;
+	margin-bottom: 2%;
 }
+
 
 #back-btn:hover {
 	background-color: white;
@@ -121,7 +102,7 @@
 	padding: 2%;
 	border: 1px solid #ccc;
 	border-radius: 5px;
-	background: transparent;
+	background: #05203c;
 	color: white;
 }
 
@@ -130,10 +111,41 @@
 	color: #05203c;
 }
 
+.form-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+	border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto; /*This allows the scrolling*/
+    background-color: #05203c;
+    padding:15px;
+    box-sizing: border-box;
+}
+
+#input-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #ffffff;
+    color: #05203c;
+    padding: 20px;
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem;
+    width: 100%;
+    max-width: 600px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
 #IA-response {
-    max-height: 300px;
+    max-height: none;
     overflow-y: auto;
-    margin-top: 20px;
+    margin-top: 10px;
     padding: 10px;
     background-color: #ffffff;
     color: #05203c;
@@ -143,5 +155,22 @@
     font-size: 1rem;
     width: 100%;
     box-sizing: border-box;
+}
+
+#map-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    height: 300px;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
 }
 
