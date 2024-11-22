@@ -8,6 +8,7 @@ const travelForm = document.getElementById('travel-input');
 const IAResponse = document.getElementById('IA-response');
 const mapContainer = document.getElementById("map-container");
 let map;
+var marker;
 
 formOption.addEventListener('click', () => {
 	initPage.style.display = 'none';
@@ -33,15 +34,10 @@ travelForm.addEventListener('submit', async (e) => {
 	}
 
 	try {
-		console.log("Entering info fetch");
 		const info_response = await fetch(`${SERVER_URL}/generate_travel_info?query=${searchQuery}`);
 		const info_data = await info_response.json();
-		console.log(info_data);
 
-		console.log("Entering coord fetch");
-		// const enhancedQuery = `${searchQuery} - ${info_data}`;
-		// console.log(enhancedQuery);
-		const coord_response = await fetch(`${SERVER_URL}/generate_travel_coord?query=${info_data}`);
+		const coord_response = await fetch(`${SERVER_URL}/generate_travel_coord?query=${encodeURIComponent(info_data)}`);
 		const coord_data = await coord_response.json();
 		coord = [coord_data.split(',')[0], coord_data.split(',')[1]];
 
@@ -51,18 +47,26 @@ travelForm.addEventListener('submit', async (e) => {
 		IAResponse.style.display = 'block';
 		mapContainer.style.display = "flex";
 
-		if (!map) {
-			map = L.map("map").setView([coord[0], coord[1]], 13);
-			L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-				maxZoom: 19,
-			}).addTo(map);
-			L.marker([coord[0], coord[1]]).addTo(map);
-		} else {
-			map.setView(coord, 13);
-			L.marker(coord).addTo(map);
-		}
+		updateMap(coord);
 	}
 	catch (err) {
 		console.error("Error fetching data:", err);
 	}
 });
+
+function updateMap(coord) {
+	if (!map) {
+		map = L.map("map").setView([coord[0], coord[1]], 9);
+		L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+			maxZoom: 19,
+		}).addTo(map);
+		marker = new L.marker([coord[0], coord[1]]).addTo(map);
+		map.addLayer(marker);
+	} 
+	else {
+		map.setView(coord, 13);
+		map.removeLayer(marker);
+		marker = new L.marker(coord).addTo(map);
+		map.addLayer(marker);
+	}
+}
