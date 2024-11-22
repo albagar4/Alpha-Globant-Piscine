@@ -142,7 +142,7 @@
     margin-bottom: 20px;
 }
 
-#IA-response {
+.IA-response {
     max-height: none;
     overflow-y: auto;
     margin-top: 10px;

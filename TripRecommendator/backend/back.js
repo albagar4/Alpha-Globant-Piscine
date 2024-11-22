@@ -1,12 +1,16 @@
 import express from 'express';
+import multer from 'multer';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import fs from 'fs';
 
 dotenv.config();
 
 const app = express();
 const port = 5000;
+
+const upload = multer({ dest: 'uploads/' });
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
@@ -33,8 +37,35 @@ app.get('/generate_travel_coord', async (req, res) => {
 	res.json(result.response.text());
 });
 
-app.get('/image_to_text', async (req, res) => {
-	
+app.post('/image_to_text', upload.single('file'), async (req, res) => {
+	try {
+		const filePath = req.file.path;
+		const mimeType = req.file.mimetype;
+
+		if (!['image/jpeg', 'image/png'].includes(mimeType)) {
+			res.status(400).json({ error: 'Invalid file type' });
+			return ;
+		}
+
+		const fileData = fs.readFileSync(filePath).toString('base64');
+		const imagePart = {
+			inlineData: {
+				data: fileData,
+				mimeType: mimeType,
+			}
+		}
+
+		const prompt = `Propose me a travel itinerary based on the following image.Write it for me in a basic html that doesn't interfere with my own css, avoid the \`\`\`html and \`\`\` at the end.`;
+		const result = await model.generateContent([prompt, imagePart]);
+
+		fs.unlinkSync(filePath);
+
+		res.json({ response: result.response.text() });
+	}
+	catch (err) {
+		console.error("Error processing the file:", err);
+		res.status(500).json({ error: 'Internal server error' });
+	}
 });
 
 app.listen(port, () => {

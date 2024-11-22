@@ -8,7 +8,7 @@ const fileOption = document.getElementById('file-option');
 const backButton = document.getElementsByClassName('back-btn');
 const travelForm = document.getElementById('travel-input');
 const travelFile = document.getElementById('travel-file');
-const IAResponse = document.getElementById('IA-response');
+const IAResponse = document.getElementsByClassName('IA-response');
 const mapContainer = document.getElementById("map-container");
 let map;
 var marker;
@@ -26,14 +26,14 @@ fileOption.addEventListener('click', () => {
 backButton[0].addEventListener('click', () => {
 	initPage.style.display = 'block';
 	formPage.style.display = 'none';
-	IAResponse.style.display = 'none';
+	IAResponse[0].style.display = 'none';
 	mapContainer.style.display = "none";
 });
 
 backButton[1].addEventListener('click', () => {
 	initPage.style.display = 'block';
 	filePage.style.display = 'none';
-	IAResponse.style.display = 'none';
+	IAResponse[1].style.display = 'none';
 	mapContainer.style.display = "none";
 });
 
@@ -57,9 +57,9 @@ travelForm.addEventListener('submit', async (e) => {
 		coord = [coord_data.split(',')[0], coord_data.split(',')[1]];
 
 
-		IAResponse.innerHTML = info_data;
+		IAResponse[0].innerHTML = info_data;
 		inputForm.value = '';
-		IAResponse.style.display = 'block';
+		IAResponse[0].style.display = 'block';
 		mapContainer.style.display = "flex";
 
 		updateMap(coord);
@@ -101,14 +101,18 @@ travelFile.addEventListener('submit', async (e) => {
 
 	try {
 		console.log('Sending file...');
-		const response = await fetch(`${SERVER_URL}/generate_travel_info`, {
+		const response = await fetch(`${SERVER_URL}/image_to_text`, {
 			method: 'POST',
 			body: formData,
 		});
-		const data = await response.json();
 
-		IAResponse.innerHTML = data;
-		IAResponse.style.display = 'block';
+		if (!response.ok) {
+			throw new Error(`Server error: ${response.statusText}`);
+		}
+		
+		const data = await response.json();
+		IAResponse[1].innerHTML = data.response;
+		IAResponse[1].style.display = 'block';
 	}
 	catch (err) {
 		console.error("Error fetching data:", err);
