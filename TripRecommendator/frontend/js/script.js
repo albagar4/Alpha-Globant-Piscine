@@ -3,8 +3,11 @@ const SERVER_URL = 'http://localhost:5000';
 const initPage = document.querySelector('.init-page');
 const formPage = document.querySelector('.form-page');
 const formOption = document.getElementById('form-option');
-const backButton = document.getElementById('back-btn');
+const filePage = document.querySelector('.file-page');
+const fileOption = document.getElementById('file-option');
+const backButton = document.getElementsByClassName('back-btn');
 const travelForm = document.getElementById('travel-input');
+const travelFile = document.getElementById('travel-file');
 const IAResponse = document.getElementById('IA-response');
 const mapContainer = document.getElementById("map-container");
 let map;
@@ -15,14 +18,26 @@ formOption.addEventListener('click', () => {
 	formPage.style.display = 'block';
 });
 
-backButton.addEventListener('click', () => {
+fileOption.addEventListener('click', () => {
+	initPage.style.display = 'none';
+	filePage.style.display = 'block';
+});
+
+backButton[0].addEventListener('click', () => {
 	initPage.style.display = 'block';
 	formPage.style.display = 'none';
 	IAResponse.style.display = 'none';
 	mapContainer.style.display = "none";
 });
 
-// Form Gemini petitions
+backButton[1].addEventListener('click', () => {
+	initPage.style.display = 'block';
+	filePage.style.display = 'none';
+	IAResponse.style.display = 'none';
+	mapContainer.style.display = "none";
+});
+
+// Form Gemini petitions on form page
 travelForm.addEventListener('submit', async (e) => {
 	e.preventDefault();
 	const searchQuery = document.getElementById('origin').value;
@@ -70,3 +85,32 @@ function updateMap(coord) {
 		map.addLayer(marker);
 	}
 }
+
+// File Gemini petitions on file page
+travelFile.addEventListener('submit', async (e) => {
+	e.preventDefault();
+	const file = document.getElementById('file').files[0];
+
+	if (!file) {
+		alert('Please select a file');
+		return ;
+	}
+
+	const formData = new FormData();
+	formData.append('file', file);
+
+	try {
+		console.log('Sending file...');
+		const response = await fetch(`${SERVER_URL}/generate_travel_info`, {
+			method: 'POST',
+			body: formData,
+		});
+		const data = await response.json();
+
+		IAResponse.innerHTML = data;
+		IAResponse.style.display = 'block';
+	}
+	catch (err) {
+		console.error("Error fetching data:", err);
+	}
+});

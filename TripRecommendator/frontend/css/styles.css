@@ -58,7 +58,7 @@
 	color: #0062e3;
 }
 
-#back-btn {
+.back-btn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -74,7 +74,7 @@
 }
 
 
-#back-btn:hover {
+.back-btn:hover {
 	background-color: white;
 	color: #05203c;
 }
@@ -174,3 +174,31 @@
     height: 100%;
 }
 
+.file-page {
+	display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+	border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    background-color: #05203c;
+    padding:15px;
+    box-sizing: border-box;
+}
+
+#travel-file {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	width: 100%;
+}
+
+#travel-file input {
+	flex: 1;
+	padding: 2%;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}

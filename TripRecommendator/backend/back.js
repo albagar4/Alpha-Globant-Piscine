@@ -33,6 +33,10 @@ app.get('/generate_travel_coord', async (req, res) => {
 	res.json(result.response.text());
 });
 
+app.get('/image_to_text', async (req, res) => {
+	
+});
+
 app.listen(port, () => {
 	console.log(`Server is running on port ${port}`);
   });

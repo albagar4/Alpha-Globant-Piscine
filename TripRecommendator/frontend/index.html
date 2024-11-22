@@ -19,12 +19,11 @@
 		<div id="map-option">Draw on our map</div>
 	</div>
 	<div class="form-page" align="center" style="display: none;">
-		<div id="back-btn"><span class="material-icons">home</span></div>
+		<div class="back-btn"><span class="material-icons">home</span></div>
 		<div id="input-box">
 			<h1>Tell me where you want to go</h1>
 			<form id="travel-input">
 				<input type="text" name="origin" id="origin" placeholder="Travel destination">
-				<!-- <input id="submit-btn" type="submit"/> -->
 				<button id="submit-btn" type="submit">
 					<span class="material-icons">search</span>
 				</button>
@@ -33,6 +32,20 @@
 			<div id="map-container" style="display: none;">
 				<div id="map"></div>
 			</div>
+		</div>
+	</div>
+	<div class="file-page" align="center" style="display: none;">
+		<div class="back-btn"><span class="material-icons">home</span></div>
+		<div id="input-box">
+			<h1>Upload your file</h1>
+			<p>Provide an image of the place you want to visit and we'll prepare you an itinerary!</p>
+			<form id="travel-file">
+				<input type="file" name="file" id="file" accept="image/png, image/jpeg">
+				<button id="submit-btn" type="submit">
+					<span class="material-icons">search</span>
+				</button>
+			</form>
+			<div id="IA-response" style="display: none;"></div>
 		</div>
 	</div>
 	<script src="js/script.js"></script>
