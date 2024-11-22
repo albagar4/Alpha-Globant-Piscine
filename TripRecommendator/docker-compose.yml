@@ -1,0 +1,23 @@
+services:
+  backend:
+    build:
+      context: backend/
+      dockerfile: Dockerfile
+    env_file: .env
+    environment:
+      GEMINI_API: ${GEMINI_API}
+    container_name: backend
+    ports:
+      - "5000:5000"
+    restart: always
+  frontend:
+    build:
+      context: frontend/
+      dockerfile: Dockerfile
+    container_name: frontend
+    ports:
+      - "8080:80"
+    restart: always
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+  
