@@ -6,14 +6,14 @@ const SetLogin = () => {
         <div style={{ marginBottom: '10px' }}>
           <label>
             Username:
-            <input type="text" name="username" />
           </label>
+          <input style={{ margin: '0 10px' }} type="text" name="username" />
         </div>
         <div style={{ marginBottom: '10px' }}>
           <label>
             Password:
-            <input type="password" name="password" />
           </label>
+          <input style={{ margin: '0 10px' }} type="password" name="password" />
         </div>
         <button type="submit">Login</button>
       </form>
