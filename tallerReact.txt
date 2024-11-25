@@ -1,0 +1,39 @@
+React es una librería de JavaScript basada en componentes.
+Utiliza un DOM virtual para optimizar el rendimiento.
+
+Herramientas necesarias:
+- Node.js y npm
+- Create React App
+- Next.js o Remix para apps web
+- Expo para apps móvil híbridas
+
+-- Ejemplo bash --
+npx create-react-app my-app
+cd my-app
+npm start
+
+Tipos de componentes:
+- Componentes funcionales
+- Componentes clase. No se usa mucho ya.
+
+JSX: Extensión para JavaScript parecida a HTML.
+PROPS: Mecanismo para pasar datos de componentes padres a hijos (parecido a los argumentos).
+
+Cada componente puede tener su propio STATE.
+Son variables que puedes guardar en los componentes.
+Normalmente se ve useState() Hook como ejemplo (un contador).
+
+Para hacer fetch() en React se usa useEffect().
+¿Qué es una Promise?
+
+En cuanto a los eventos, React te permite manejar eventos directamente en el markup.
+
+TypeScript compila su código a JavaScript.
+Te permite ver los errores conforme vas escribiendo código.
+La legibilidad y mantenimiento es mejor que en JS.
+
+-- Next.js --
+Es un framework de React.
+Tiene muchas optimizaciones sobre rendimiento, manejabilidad y estilismo sobre los componentes.
+Te da facilidad para subir aplicaciones en Vercel.
+
